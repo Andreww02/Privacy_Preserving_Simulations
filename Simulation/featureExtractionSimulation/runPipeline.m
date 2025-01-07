@@ -6,7 +6,7 @@ clc;
 close all;
 
 % Path to image dataset
-dsetPath = "C:\Users\Andrew\Desktop\Thesis\ThesisData\ABS\norm";
+dsetPath = "C:\Users\Andrew\Desktop\Privacy_Preserving_Simulations\ThesisData\ABS\norm";
 % dsetPath = "C:\Users\Andrew\Desktop\Thesis\ThesisData\VerticalLines";
 % Store the dataset into a structure that contains information about it
 dset = getDset(dsetPath);
