@@ -1,0 +1,197 @@
+clear;
+clc;
+close all;
+
+%---Load the image---
+img = imread('C:\Users\Andrew\Desktop\Thesis\ThesisData\RGB\001.jpeg');
+img = double(img);  % Convert image to double for calculations
+
+%---Separate the image into Red, Green, and Blue channels---
+redChannel = img(:,:,1);
+greenChannel = img(:,:,2);
+blueChannel = img(:,:,3);
+
+%---Display the image---
+figure;
+imshow(img / 255);  % Display normalized image
+title('Original Image with Multiple Sinusoidal Paths');
+axis image;
+hold on;
+
+%---Get the dimensions of the image---
+[rows, cols, ~] = size(img);
+
+%---Parameters for the sinusoidal paths---
+numPaths = 10;            % Number of paths
+numPointsPerPath = 1000;  % Number of points per path (increased for smoothness)
+amplitudeX = cols / 5;   % Amplitude in the x-direction
+amplitudeY = rows / 3;   % Amplitude in the y-direction
+
+%---Initialize variables to store all paths---
+x_total = [];
+y_total = [];
+
+%---Initialize lists to store max and min intensity values---
+redMaxList = zeros(numPaths,1);
+redMinList = zeros(numPaths,1);
+greenMaxList = zeros(numPaths,1);
+greenMinList = zeros(numPaths,1);
+blueMaxList = zeros(numPaths,1);
+blueMinList = zeros(numPaths,1);
+
+%---Starting point (center of the image)---
+currentX = cols / 10;
+currentY = rows / 10;
+
+%---Fix frequencies for continuity---
+frequencyX = 0.02;  % Fixed frequency for x-direction
+frequencyY = 0.02;  % Fixed frequency for y-direction
+
+%---Initialize phase for continuity---
+currentPhaseX = 0;
+currentPhaseY = 0;
+
+%---Loop to generate multiple continuous sinusoidal paths---
+for i = 1:numPaths
+    %---Define a parameter t for generating both x and y coordinates---
+    frequencyX = rand() * 0.25 + 0.01;  % Frequency range for x-direction
+    frequencyY = rand() * 0.25 + 0.01;  % Frequency range for y-direction
+    numCycles = 5;  % Number of sine cycles per path segment
+    t = linspace(0, 2 * pi * numCycles, numPointsPerPath);
+    
+    %---Generate x and y sinusoidal paths with continuity---
+    deltaX = amplitudeX * sin(frequencyX * t);
+    deltaY = amplitudeY * sin(frequencyY * t);
+    
+    x = currentX + deltaX;
+    y = currentY + deltaY;
+    
+    %---Ensure points stay within image bounds---
+    x = max(1, min(cols, x));
+    y = max(1, min(rows, y));
+    
+    %---Append to total path---
+    x_total = [x_total, x];
+    y_total = [y_total, y];
+    
+    %---Extract pixel intensity values from each color channel---
+    redIntensityValues = interp2(redChannel, x, y, 'linear', 0);
+    greenIntensityValues = interp2(greenChannel, x, y, 'linear', 0);
+    blueIntensityValues = interp2(blueChannel, x, y, 'linear', 0);
+    
+    %---Store max and min intensity values for this path---
+    redMaxList(i) = max(redIntensityValues);
+    redMinList(i) = min(redIntensityValues);
+    
+    greenMaxList(i) = max(greenIntensityValues);
+    greenMinList(i) = min(greenIntensityValues);
+    
+    blueMaxList(i) = max(blueIntensityValues);
+    blueMinList(i) = min(blueIntensityValues);
+    
+    %---Plot the current path with a unique color---
+    plot(x, y, 'LineWidth', 1.5, 'Color', rand(1,3));
+    
+    %---Update current position to the end of this path---
+    currentX = x(end);
+    currentY = y(end);
+    
+
+end
+
+hold off;
+
+%---Create an evenly spaced vector from 0-255---
+binEdges = linspace(0, 255, 256);
+
+%---Create 2D histograms for max vs min values for each color channel---
+[redCounts, ~, ~] = histcounts2(redMaxList, redMinList, binEdges, binEdges);
+[greenCounts, ~, ~] = histcounts2(greenMaxList, greenMinList, binEdges, binEdges);
+[blueCounts, ~, ~] = histcounts2(blueMaxList, blueMinList, binEdges, binEdges);
+
+%---Apply Gaussian blur to each channel's heat map---
+sigma = 3;
+blurredRedCounts = imgaussfilt(redCounts, sigma);
+blurredGreenCounts = imgaussfilt(greenCounts, sigma);
+blurredBlueCounts = imgaussfilt(blueCounts, sigma);
+
+%---Gamma scaling for better visualization---
+blurredRedCounts = blurredRedCounts.^0.5;
+blurredGreenCounts = blurredGreenCounts.^0.5;
+blurredBlueCounts = blurredBlueCounts.^0.5;
+
+%---Plot the Red heatmap---
+figure;
+imagesc(binEdges, binEdges, blurredRedCounts');
+title('Red Heatmap');
+redMap = [linspace(0, 1, 256)', zeros(256, 1), zeros(256, 1)];
+colormap(redMap);
+colorbar;
+xlim([0 255]);
+ylim([0 255]);
+set(gca, 'YDir', 'normal');
+axis square;
+xlabel('Max Intensity Value');
+ylabel('Min Intensity Value');
+
+%---Plot the Green heatmap---
+figure;
+imagesc(binEdges, binEdges, blurredGreenCounts');
+title('Green Heatmap');
+greenMap = [zeros(256, 1), linspace(0, 1, 256)', zeros(256, 1)];
+colormap(greenMap);
+colorbar;
+xlim([0 255]);
+ylim([0 255]);
+set(gca, 'YDir', 'normal');
+axis square;
+xlabel('Max Intensity Value');
+ylabel('Min Intensity Value');
+
+%---Plot the Blue heatmap---
+figure;
+imagesc(binEdges, binEdges, blurredBlueCounts');
+title('Blue Heatmap');
+blueMap = [zeros(256, 1), zeros(256, 1), linspace(0, 1, 256)'];
+colormap(blueMap);
+colorbar;
+xlim([0 255]);
+ylim([0 255]);
+set(gca, 'YDir', 'normal');
+axis square;
+xlabel('Max Intensity Value');
+ylabel('Min Intensity Value');
+
+%---Combine the heatmaps into an RGB image---
+% Normalize each heatmap before combining to ensure proper color mixing
+maxRed = max(blurredRedCounts(:));
+maxGreen = max(blurredGreenCounts(:));
+maxBlue = max(blurredBlueCounts(:));
+
+% Prevent division by zero
+if maxRed == 0
+    maxRed = 1;
+end
+if maxGreen == 0
+    maxGreen = 1;
+end
+if maxBlue == 0
+    maxBlue = 1;
+end
+
+rgbImage = cat(3, blurredRedCounts / maxRed, blurredGreenCounts / maxGreen, blurredBlueCounts / maxBlue);
+
+%---Flip the RGB heatmap horizontally---
+rgbImage = fliplr(rgbImage);
+
+%---Plot the combined RGB heatmap---
+figure;
+imshow(rgbImage);
+title('Combined RGB Heatmap (Flipped Horizontally)');
+xlabel('Max Intensity Value');
+ylabel('Min Intensity Value');
+axis on;
+xlim([0 255]);
+ylim([0 255]);
+axis square;
+

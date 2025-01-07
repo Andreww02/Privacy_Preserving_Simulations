@@ -1,0 +1,58 @@
+PNRroomSimpsons & PNRroomSimpsons & \textbf{55.96} & 49.82 & 45.49 & 55.60\\ 
+----------- new exp ----------dum_cloudy1 & dum_cloudy1 & \textbf{83.66} & 75.16 & 31.05 & 30.72\\ 
+Digiteo_seq_2 & Digiteo_seq_2 & \textbf{92.18} & 93.74 & 91.08 & 91.55\\ 
+PNRroom & PNRroom & \textbf{97.11} & 88.45 & 89.89 & 84.84\\ 
+PNRroom & PNRroomRotated & \textbf{54.51} & 46.93 & 43.68 & 48.38\\ 
+----------- new exp ----------
+SIFT & ORB & Rand Circ & Rand Lines & 
+dum_cloudy1 & dum_cloudy1 & \textbf{83.66} & 75.16 & 31.05 & 30.72\\ 
+Digiteo_seq_2 & Digiteo_seq_2 & \textbf{92.18} & 93.74 & 91.08 & 91.55\\ 
+PNRroom & PNRroom & \textbf{97.11} & 88.45 & 89.89 & 84.84\\ 
+PNRroom & PNRroomRotated & \textbf{54.51} & 46.93 & 43.68 & 48.38\\ 
+----------- new exp ----------
+SIFT & ORB & Rand Circ & Rand Lines & 
+PNRroomRotated & PNRroomRotated & \textbf{87.73} & 92.78 & 94.58 & 94.58\\ 
+----------- new exp ----------
+SIFT & ORB & Rand Circ & Rand Lines & 
+PNRroomRotated & PNRroomRotated & \textbf{88.45} & 89.89 & 96.39 & 93.14\\ 
+----------- new exp ----------
+SIFT & ORB & Rand Circ & Rand Lines & 
+PNRroomRotated & PNRroomRotated & \textbf{87.36} & 90.25 & 96.75 & 92.78\\ 
+----------- new exp ----------
+SIFT & ORB & Rand Circ & Rand Lines & 
+ABS & ABS & \textbf{88.64} & 72.73 & 63.64 & 36.36\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+ABS & ABS & \textbf{81.82} & 84.09 & 95.45 & 52.27\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+ABS & ABS & \textbf{79.55} & 84.09 & 93.18 & 47.73\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+ABS & ABS & \textbf{56.82}\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+ABS & ABS & \textbf{56.82}\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+ABS & ABS & \textbf{56.82}\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+ABS_norm & ABS_rot & \textbf{56.82}\\ 
+ABS_norm & ABS_trans & \textbf{40.91}\\ 
+ABS_norm & rot_trans & \textbf{27.27}\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+ABS_norm & ABS_rot & \textbf{79.55} & 84.09 & 93.18 & 47.73\\ 
+ABS_norm & ABS_trans & \textbf{81.82} & 65.91 & 68.18 & 38.64\\ 
+ABS_norm & rot_trans & \textbf{75.00} & 63.64 & 68.18 & 45.45\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+PNR & PNR & \textbf{97.47} & 87.36 & 90.97 & 87.00\\ 
+PNRrotated & PNRrotated & \textbf{85.20} & 91.70 & 96.75 & 89.53\\ 
+----------- new exp ----------
+SIFT & ORB & Circle extrema & Line extrema & 
+dum_cloudy1 & dum_cloudy1 & \textbf{82.68} & 77.45 & 33.33 & 28.10\\ 
+Digiteo_seq_2 & Digiteo_seq_2 & \textbf{90.92} & 92.96 & 89.83 & 90.14\\ 
+PNR & PNR & \textbf{97.47} & 87.36 & 91.34 & 87.00\\ 
+PNRrotated & PNRrotated & \textbf{87.73} & 89.89 & 95.31 & 94.22\\ 

@@ -1,0 +1,14 @@
+data
+SeqSLAMdatasets
+bagOfWordsTest/MerchData
+*.asv
+pySIFT/__pycache__
+results
+*.png
+*.fig
+*.pdf
+*.avi
+*.mp4
+*.mat
+*.gif
+*.svg
