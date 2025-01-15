@@ -1,5 +1,5 @@
 function [angles, sumDerivatives] = f_generateHistogram(img, numLines, lineLength, numBinsFeature, numBinsAngle)
-    % F_GENERATEHEATMAP2D Generate a 2D heatmap of normalized derivative sums and line angles.
+    % Generate a 2D heatmap of normalized derivative sums and line angles.
     %
     % Inputs:
     %   img            - Input image (grayscale)
@@ -55,8 +55,8 @@ function [angles, sumDerivatives] = f_generateHistogram(img, numLines, lineLengt
     end
 
     % Normalize the sum of derivatives to range [0, 1]
-    sumDerivatives = sumDerivatives - min(sumDerivatives);
-    sumDerivatives = sumDerivatives / max(sumDerivatives);
+    sumDerivatives = (sumDerivatives - min(sumDerivatives)) / (max(sumDerivatives) - min(sumDerivatives));
+    % sumDerivatives = sumDerivatives / max(sumDerivatives);
 
     % Normalize angles to range [0, 360]
     angles = mod(angles, 360);

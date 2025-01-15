@@ -11,8 +11,6 @@ function [lines] = f_generateRandomLines(imgSize, numLines, lineLength)
     %           lines(i).start = [x1, y1] (starting point)
     %           lines(i).end   = [x2, y2] (ending point)
     %
-    % Example:
-    %   lines = f_generateRandomLines([512, 512], 10, 50);
 
     % Validate inputs
     arguments

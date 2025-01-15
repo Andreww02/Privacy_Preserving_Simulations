@@ -1,4 +1,4 @@
- % CMON ANDREW YOU CAN DO THIS
+% CMON ANDREW YOU CAN DO THIS
 
 % Clear previously allocated memory
 clear;
@@ -6,8 +6,8 @@ clc;
 close all;
 
 % Path to image dataset
-dsetPath = "C:\Users\Andrew\Desktop\Privacy_Preserving_Simulations\ThesisData\ABS\norm";
-% dsetPath = "C:\Users\Andrew\Desktop\Thesis\ThesisData\VerticalLines";
+% dsetPath = "C:\Users\Andrew\Desktop\Privacy_Preserving_Simulations\ThesisData\ABS\norm";
+dsetPath = "C:\Users\Andrew\Desktop\Thesis\ThesisData\VerticalLines";
 % Store the dataset into a structure that contains information about it
 dset = getDset(dsetPath);
 
@@ -15,7 +15,7 @@ dset = getDset(dsetPath);
 % images contained in the dataset
 
 % Choose and store the image from the dataset based on the index
-index = 100;
+index = 50;
 img = f_displayImageFromDset(dset, index);
 
 % Ensure the image is grayscale
