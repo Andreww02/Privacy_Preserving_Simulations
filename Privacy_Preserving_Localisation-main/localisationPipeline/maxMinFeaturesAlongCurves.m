@@ -21,4 +21,8 @@ function [features, metrics] = maxMinFeaturesAlongCurves(img, xToSample,yToSampl
         metrics = [max(interpVals,[],2) - min(interpVals,[],2)];
     end
 
+    % disp("hello");
+    % disp(size(features));
+    % disp(size(metrics));
+
 end

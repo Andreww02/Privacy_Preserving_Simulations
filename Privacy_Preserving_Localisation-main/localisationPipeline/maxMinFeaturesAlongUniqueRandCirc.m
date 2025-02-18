@@ -8,6 +8,10 @@ function [features, metrics] = maxMinFeaturesAlongUniqueRandCirc(img, nCircles, 
 
     end
 
+
     [xToSample, yToSample] = generateCircleSamplesPts(size(img), nCircles, radii, nSample);
-    [features, metrics] = maxMinFeaturesAlongCurves(img, xToSample,yToSample, isNormalise);
+    [features, metrics] = maxMinFeaturesAlongCurves(img, xToSample,yToSample, isNormalise);    
+    % disp("hi");
+    % disp(size(features));
+    % disp(size(metrics));
 end

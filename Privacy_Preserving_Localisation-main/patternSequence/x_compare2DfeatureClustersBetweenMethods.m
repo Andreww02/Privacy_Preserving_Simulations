@@ -3,8 +3,8 @@ clc;
 close all;
 
 
-dsetName = '../data/Digiteo_seq_2/Passive-Stereo/RGB-D/rgb';
-
+% dsetName = '../data/Digiteo_seq_2/Passive-Stereo/RGB-D/rgb';
+dsetName = "C:\Users\Andrew\Desktop\Privacy_Preserving_Simulations\ThesisData\Digiteo_seq_2\Digiteo_seq_2\Passive-Stereo\RGB-D\rgb";
 dset = getDset(dsetName);
 
 
