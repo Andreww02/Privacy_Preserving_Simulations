@@ -1,6 +1,6 @@
 # Privacy_Preserving_Simulations
 
-The repo contains MATLAB code for generating different fingerprints. Andrew 2025. Work done under Donald G. Dansereau as part of the Vacation Research Internship Program, The University of Sydney.
+Andrew 2025. The repo contains MATLAB code for generating different fingerprints. The localisation pipeline folder was based on the work of Adam Taras 2022. Work done under Donald G. Dansereau as part of the Vacation Research Internship Program, The University of Sydney.
 
 Key folder: 
 - featureExtractionSimulation
